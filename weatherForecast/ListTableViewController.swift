@@ -11,7 +11,7 @@ import UIKit
 class ListTableViewController: UITableViewController {
     
 //    var acqList = ["北京", "上海", "南京", "西安", "济南", "广州", "深圳", "天津", "甘肃"]
-    var acqList = [City("101010100","北京",WeatherInfo("6c")!), City("101020100","上海",WeatherInfo("6c")!), City("101190101","南京",WeatherInfo("6c")!), City("101110101","西安",WeatherInfo("6c")!), City("101210101","杭州",WeatherInfo("6c")!), City("101280101","广州",WeatherInfo("6c")!), City("101280601","深圳",WeatherInfo("6c")!), City("101030100","天津",WeatherInfo("6c")!), City("101120101","济南",WeatherInfo("6c")!)]
+    var acqList = [City("101010100","北京",WeatherInfo(1)!), City("101020100","上海",WeatherInfo(2)!), City("101190101","南京",WeatherInfo(3)!), City("101110101","西安",WeatherInfo(4)!), City("101210101","杭州",WeatherInfo(5)!), City("101280101","广州",WeatherInfo(6)!), City("101280601","深圳",WeatherInfo(7)!), City("101030100","天津",WeatherInfo(8)!), City("101120101","济南",WeatherInfo(9)!)]
     
     override func viewDidLoad() {//初始化
         super.viewDidLoad()
@@ -19,7 +19,8 @@ class ListTableViewController: UITableViewController {
             if let cityNum = city?.cityNum {
                 //city?.cityNum = UIImage(named: name)
                 //city?.weatherinfo = "This is a memo for " + name
-            } }
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

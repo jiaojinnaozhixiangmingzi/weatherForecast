@@ -12,33 +12,33 @@ class WeatherInfo: NSObject {
     
     var weaid: Int
     //    天气id （每天有一个id，实时接口里的 weaid 和 今天以及未来五天天气接口里的 第一个weaid一样）
-    var days: String
+    var days: String?
 //    日期   （2016-11-24）
-    var week: String
+    var week: String?
 //    星期几  （周四）
-    var cityno: String
+    var cityno: String?
 //    城市全拼		（beijing）
-    var citynm: String
+    var citynm: String?
 //    城市名称		（北京）
-    var cityid: Int
+    var cityid: Int?
 //    城市编号		（101010100）
-    var temperature: String
+    var temperature: String?
 //    气温范围		（4℃/-6℃）
-    var temperature_curr: String
+    var temperature_curr: String?
 //    当前气温		(只有实时天气有)
-    var humidity: String
+    var humidity: String?
 //    湿度		（50%）
-    var weather: String
+    var weather: String?
 //    天气情况		（晴）
-    var wind: String
+    var wind: String?
 //    风向		（西南风）
-    var winp: String
+    var winp: String?
 //    风级		（1级）
-    var temp_high: Int
+    var temp_high: Int?
 //    最高气温		（4）
-    var temp_low: Int
+    var temp_low: Int?
 //    最低气温		（-6）
-    var temp_curr: Int
+    var temp_curr: Int?
 //    当前气温		（0）
     
     init?(weaid: Int, days: String, week: String, cityno: String, citynm: String, cityid: Int, temperature: String, temperature_curr: String, humidity: String, weather: String, wind: String, winp: String, temp_high: Int, temp_low: Int, temp_curr: Int) {//带所有参数的构造函数
@@ -61,8 +61,8 @@ class WeatherInfo: NSObject {
         
         super.init()
     }
-//    convenience init?(_ temp_curr: String)//带！必填函数的简略构造函数
-//    {
-//        self.init()
-//    }
+    convenience init?(_ weaid: Int)//带！必填函数的简略构造函数
+    {
+        self.init(weaid: weaid, days: "",week: "",cityno: "", citynm: "",cityid: 0, temperature: "", temperature_curr: "", humidity: "",weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
+    }
 }
