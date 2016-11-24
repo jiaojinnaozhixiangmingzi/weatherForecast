@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class WeatherInfo: NSObject {
     
-    weaid 天气id （每天有一个id，实时接口里的 weaid 和 今天以及未来五天天气接口里的 第一个weaid一样）
+    var weaid 天气id （每天有一个id，实时接口里的 weaid 和 今天以及未来五天天气接口里的 第一个weaid一样）
     days  日期   （2016-11-24）
     week  星期几  （周四）
     cityno  城市全拼		（beijing）
