@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class WeatherInfo: NSObject {
     
-    var weaid: Int
+    var weaid: String?
     //    天气id （每天有一个id，实时接口里的 weaid 和 今天以及未来五天天气接口里的 第一个weaid一样）
     var days: String?
 //    日期   （2016-11-24）
@@ -18,7 +18,7 @@ class WeatherInfo: NSObject {
 //    星期几  （周四）
     var cityno: String?
 //    城市全拼		（beijing）
-    var citynm: String?
+    var citynm: String
 //    城市名称		（北京）
     var cityid: Int?
 //    城市编号		（101010100）
@@ -41,7 +41,7 @@ class WeatherInfo: NSObject {
     var temp_curr: Int?
 //    当前气温		（0）
     
-    init?(weaid: Int, days: String, week: String, cityno: String, citynm: String, cityid: Int, temperature: String, temperature_curr: String, humidity: String, weather: String, wind: String, winp: String, temp_high: Int, temp_low: Int, temp_curr: Int) {//带所有参数的构造函数
+    init?(weaid: String, days: String, week: String, cityno: String, citynm: String, cityid: Int, temperature: String, temperature_curr: String, humidity: String, weather: String, wind: String, winp: String, temp_high: Int, temp_low: Int, temp_curr: Int) {//带所有参数的构造函数
         
         self.weaid = weaid
         self.days = days
@@ -61,8 +61,8 @@ class WeatherInfo: NSObject {
         
         super.init()
     }
-    convenience init?(_ weaid: Int)//带！必填函数的简略构造函数
+    convenience init?(_ citynm: String)//带！必填函数的简略构造函数
     {
-        self.init(weaid: weaid, days: "",week: "",cityno: "", citynm: "",cityid: 0, temperature: "", temperature_curr: "", humidity: "",weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
+        self.init(weaid: "", days: "",week: "",cityno: "", citynm: citynm,cityid: 0, temperature: "", temperature_curr: "", humidity: "",weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
     }
 }
