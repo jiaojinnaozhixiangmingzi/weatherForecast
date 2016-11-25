@@ -71,17 +71,18 @@ class ListTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            acqList.remove(at: indexPath.row)//删除数组中此行的对象
+            tableView.deleteRows(at: [indexPath], with: .fade)//界面上显示
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -98,14 +99,18 @@ class ListTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+        // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowWeatherDetail",//先判断segue的id
+        let indexPath = tableView.indexPathForSelectedRow,//先获取用户点击的数据所在的行数
+            let detailWeatherViewController = segue.destination as? DetailWeatherViewController {//把此segue的目标Cotroller
+            detailWeatherViewController.city = acqList[indexPath.row]//先把此对象赋给DetailWeatherViewController
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

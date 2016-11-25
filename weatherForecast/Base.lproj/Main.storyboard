@@ -102,7 +102,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="E8m-Bw-J8k" kind="show" id="G0S-zG-lCn"/>
+                                    <segue destination="E8m-Bw-J8k" kind="show" identifier="ShowWeatherDetail" id="G0S-zG-lCn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -111,16 +111,18 @@
                             <outlet property="delegate" destination="Ecr-ai-PEF" id="0Wi-Qn-yaM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的收藏" id="r3Y-GC-Uib"/>
+                    <navigationItem key="navigationItem" title="我的收藏" id="r3Y-GC-Uib">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yFb-Eg-ibf"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O9u-2R-ifI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1756" y="-529.38530734632684"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail Weather View Controller-->
         <scene sceneID="tIU-Ej-3p9">
             <objects>
-                <viewController id="E8m-Bw-J8k" sceneMemberID="viewController">
+                <viewController id="E8m-Bw-J8k" customClass="DetailWeatherViewController" customModule="weatherForecast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aT9-Wx-NnW"/>
                         <viewControllerLayoutGuide type="bottom" id="gvv-8F-Iur"/>
@@ -377,6 +379,33 @@
                             <constraint firstItem="eP1-Zi-hh7" firstAttribute="leading" secondItem="o62-aH-9z3" secondAttribute="leading" constant="2" id="zvi-5Q-IYF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chanceOfRainImageView" destination="Y0m-kG-cNG" id="VEX-lA-WW3"/>
+                        <outlet property="chanceOfRainLabel" destination="PkB-gN-VHP" id="hDy-Ee-DGq"/>
+                        <outlet property="cityNameLabel" destination="O4Y-x4-pYK" id="12U-Im-pH6"/>
+                        <outlet property="currentTempretureLabel" destination="QH9-tg-Vg5" id="XcX-hH-Gaz"/>
+                        <outlet property="lowToHighTempretureLable" destination="krr-PX-pwg" id="AxU-MQ-VeM"/>
+                        <outlet property="tempOffutherWeatherLabel1" destination="Phf-Mc-OFp" id="Sd9-lN-79y"/>
+                        <outlet property="tempOffutherWeatherLabel2" destination="Fqy-Sk-eBA" id="fgy-A5-cYd"/>
+                        <outlet property="tempOffutherWeatherLabel3" destination="btr-Bg-2Vs" id="NOO-DE-kKV"/>
+                        <outlet property="tempOffutherWeatherLabel4" destination="Xjy-TH-8G1" id="trp-wF-0Vs"/>
+                        <outlet property="tempOffutherWeatherLabel5" destination="Fv3-qi-4Ds" id="tcX-TS-s4e"/>
+                        <outlet property="weatherIconImageView" destination="ar7-lq-qFg" id="aey-Eg-W45"/>
+                        <outlet property="weatherOffutherWeatherImageView1" destination="a6Y-1c-eKW" id="f6N-mX-m3U"/>
+                        <outlet property="weatherOffutherWeatherImageView2" destination="5Y9-Wb-8Un" id="vbH-TO-yum"/>
+                        <outlet property="weatherOffutherWeatherImageView3" destination="n78-Sv-lZ5" id="h20-fa-C3R"/>
+                        <outlet property="weatherOffutherWeatherImageView4" destination="7m0-sR-DzZ" id="JLz-a9-jgl"/>
+                        <outlet property="weatherOffutherWeatherImageView5" destination="SOe-2F-RJQ" id="EAX-DI-Afs"/>
+                        <outlet property="weekdayOffutherWeatherLabel1" destination="j2d-NK-j45" id="9vD-72-lD4"/>
+                        <outlet property="weekdayOffutherWeatherLabel2" destination="c1o-8B-VlZ" id="jeB-xv-8IN"/>
+                        <outlet property="weekdayOffutherWeatherLabel3" destination="9bP-yJ-bBc" id="jel-Wd-OTf"/>
+                        <outlet property="weekdayOffutherWeatherLabel4" destination="0zU-dU-1xk" id="QdK-fV-EzF"/>
+                        <outlet property="weekdayOffutherWeatherLabel5" destination="iFz-ht-gKV" id="SsP-Cq-NsO"/>
+                        <outlet property="windOfTodayImageView" destination="vpR-Q7-oGX" id="Np0-HO-zDC"/>
+                        <outlet property="windOfTodayLabel" destination="BH6-mi-FS7" id="Xau-2Q-aSs"/>
+                        <outlet property="winpOfTodayImageView" destination="a48-DO-z6G" id="FQ4-PO-ZS2"/>
+                        <outlet property="winpOfTodayLabel" destination="AwW-TR-E5w" id="Wf5-cW-8df"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iZ-G3-3DF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
