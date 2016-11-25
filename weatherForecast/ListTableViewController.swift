@@ -11,7 +11,7 @@ import UIKit
 class ListTableViewController: UITableViewController {
     
     //    var acqList = ["北京", "上海", "南京", "西安", "济南", "广州", "深圳", "天津", "甘肃"]
-    var acqList = [City("101010100","北京",WeatherInfo("北京")!), City("101020100","上海",WeatherInfo("上海")!), City("101190101","南京",WeatherInfo("南京")!), City("101110101","西安",WeatherInfo("西安")!), City("101210101","杭州",WeatherInfo("杭州")!), City("101280101","广州",WeatherInfo("广州")!), City("101280601","深圳",WeatherInfo("深圳")!), City("101030100","天津",WeatherInfo("天津")!), City("101120101","济南",WeatherInfo("济南")!)]
+    var acqList = [City("101010100","北京"), City("101020100","上海"), City("101190101","南京"), City("101110101","西安"), City("101210101","杭州"), City("101280101","广州"), City("101280601","深圳"), City("101030100","天津"), City("101120101","济南")]
     
     override func viewDidLoad() {//初始化
         super.viewDidLoad()
@@ -21,28 +21,30 @@ class ListTableViewController: UITableViewController {
                 //city?.weatherinfo = "This is a memo for " + name
                 // func loadWeather() {
                 let url=URL(string: "http://api.k780.com:88/?app=weather.today&weaid=\(cityNum)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
-               
+                
                 do{
                     let data=try NSData(contentsOf:url!, options: NSData.ReadingOptions.uncached)
-                    let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
+                    //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
                     let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    let weatherinfo:Any!=(json as AnyObject).object(forKey: "result")//获取所有weather信息
-                    let temperature_curr:Any!=(weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
-                    let weatid:Any!=(weatherinfo as AnyObject).object(forKey: "weatid")//获取weatid
-                    let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
-                    let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
-                    let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
-                    print(weather)
-                    let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
-                    let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
-                    
-                    city?.weatherinfo?.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
-                    city?.weatherinfo?.temperature = temperature as! String?
-                    city?.weatherinfo?.humidity = humidity as! String?
-                    city?.weatherinfo?.weather = weather as! String?
-                    city?.weatherinfo?.winp = winp as! String?
-                    city?.weatherinfo?.wind = wind as! String?
-                    city?.weatherinfo?.weaid = weatid as! String
+                    if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
+                        //print(weatherinfo)
+                        let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
+                        let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
+                        let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
+                        let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
+                        let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
+                        print(weather)
+                        let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
+                        let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
+                        
+                        city?.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
+                        city?.temperature = temperature as! String?
+                        city?.humidity = humidity as! String?
+                        city?.weather = weather as! String?
+                        city?.winp = winp as! String?
+                        city?.wind = wind as! String?
+                        city?.weaid = weaid as? String
+                    }
                     // tv!.text="城市:\(city!)\n温度：\(temp!)"
                 }catch{
                 }
@@ -85,7 +87,7 @@ class ListTableViewController: UITableViewController {
         //            cell.imageView?.image = UIImage(named:"photoalbum")
         //        }
         cell.textLabel?.text = city?.cityName//大标签
-        cell.detailTextLabel?.text = city?.weatherinfo?.temperature_curr//小标签
+        cell.detailTextLabel?.text = city?.temperature_curr//小标签
         return cell
     }
     
