@@ -76,7 +76,7 @@
                                         <rect key="frame" x="4" y="146" width="367" height="225"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="nnf-Gv-xSI">
-                                                <rect key="frame" x="61.5" y="0.0" width="244" height="71.5"/>
+                                                <rect key="frame" x="66" y="0.0" width="235" height="71.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RWn-DM-sce">
                                                         <rect key="frame" x="0.0" y="0.0" width="42" height="71.5"/>
@@ -107,13 +107,13 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aLo-3m-1t4">
-                                                        <rect key="frame" x="193" y="0.0" width="51" height="71.5"/>
+                                                        <rect key="frame" x="193" y="0.0" width="42" height="71.5"/>
                                                         <subviews>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="pe3-97-obR">
-                                                                <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
+                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="rainChance" translatesAutoresizingMaskIntoConstraints="NO" id="FfK-bv-xvb">
+                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="51"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZV-nu-06O">
-                                                                <rect key="frame" x="0.0" y="51" width="51" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="51" width="42" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -358,16 +358,16 @@
                                 <rect key="frame" x="2" y="286" width="371" height="232"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="hfB-UK-HTu">
-                                        <rect key="frame" x="49" y="0.0" width="273" height="72"/>
+                                        <rect key="frame" x="55" y="0.0" width="261" height="72"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tEZ-Ow-HJt">
-                                                <rect key="frame" x="0.0" y="0.0" width="51" height="72"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="72"/>
                                                 <subviews>
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="winp" translatesAutoresizingMaskIntoConstraints="NO" id="3xt-Gf-xV4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="51.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="51.5"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwW-TR-E5w">
-                                                        <rect key="frame" x="0.0" y="51.5" width="51" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="51.5" width="45" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -375,7 +375,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wzK-9N-Hjp">
-                                                <rect key="frame" x="111" y="0.0" width="51" height="72"/>
+                                                <rect key="frame" x="105" y="0.0" width="51" height="72"/>
                                                 <subviews>
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="Y0m-kG-cNG">
                                                         <rect key="frame" x="0.0" y="0.0" width="51" height="51.5"/>
@@ -389,13 +389,13 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-3q-4Kr">
-                                                <rect key="frame" x="222" y="0.0" width="51" height="72"/>
+                                                <rect key="frame" x="216" y="0.0" width="45" height="72"/>
                                                 <subviews>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="wind" translatesAutoresizingMaskIntoConstraints="NO" id="vpR-Q7-oGX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="51.5"/>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="rainChance" translatesAutoresizingMaskIntoConstraints="NO" id="rMa-dm-tfR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="51.5"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="83" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BH6-mi-FS7">
-                                                        <rect key="frame" x="0.0" y="51.5" width="51" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="51.5" width="45" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -604,7 +604,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="chanceOfRainImageView" destination="Y0m-kG-cNG" id="VEX-lA-WW3"/>
+                        <outlet property="chanceOfRainImageView" destination="rMa-dm-tfR" id="tKx-ZC-FLW"/>
                         <outlet property="chanceOfRainLabel" destination="PkB-gN-VHP" id="hDy-Ee-DGq"/>
                         <outlet property="cityNameLabel" destination="O4Y-x4-pYK" id="12U-Im-pH6"/>
                         <outlet property="currentTempretureLabel" destination="QH9-tg-Vg5" id="XcX-hH-Gaz"/>
@@ -626,7 +626,6 @@
                         <outlet property="weekdayOffutherWeatherLabel3" destination="9bP-yJ-bBc" id="jel-Wd-OTf"/>
                         <outlet property="weekdayOffutherWeatherLabel4" destination="0zU-dU-1xk" id="QdK-fV-EzF"/>
                         <outlet property="weekdayOffutherWeatherLabel5" destination="iFz-ht-gKV" id="SsP-Cq-NsO"/>
-                        <outlet property="windOfTodayImageView" destination="vpR-Q7-oGX" id="Np0-HO-zDC"/>
                         <outlet property="windOfTodayLabel" destination="BH6-mi-FS7" id="Xau-2Q-aSs"/>
                         <outlet property="winpOfTodayLabel" destination="AwW-TR-E5w" id="Wf5-cW-8df"/>
                     </connections>
@@ -658,6 +657,7 @@
     <resources>
         <image name="K5O7FB225B5W" width="768" height="1280"/>
         <image name="first" width="30" height="30"/>
+        <image name="rainChance" width="37" height="37"/>
         <image name="searchBack" width="1200" height="1800"/>
         <image name="second" width="30" height="30"/>
         <image name="weather_icon-2" width="96" height="96"/>
