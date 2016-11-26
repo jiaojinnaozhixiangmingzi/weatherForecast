@@ -43,7 +43,7 @@ class ListTableViewController: UITableViewController {
                         city?.weather = weather as! String?
                         city?.winp = winp as! String?
                         city?.wind = wind as! String?
-                        city?.weaid = weaid as? String
+                        city?.weaid = weaid as! String?
                     }
                     // tv!.text="城市:\(city!)\n温度：\(temp!)"
                 }catch{
