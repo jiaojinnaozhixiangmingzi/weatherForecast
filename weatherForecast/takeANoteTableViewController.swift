@@ -29,13 +29,15 @@ class takeANoteTableViewController:  UITableViewController, UIImagePickerControl
         // Dispose of any resources that can be recreated.
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0, UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+        
+        if indexPath.section == 0, UIImagePickerController.isSourceTypeAvailable(.photoLibrary),UIImagePickerController.isSourceTypeAvailable(.camera) {
+            
             let imagePicker = UIImagePickerController()
             imagePicker.allowsEditing = false
-            imagePicker.sourceType = .photoLibrary
+            //imagePicker.sourceType = .photoLibrary
             imagePicker.delegate = self
-            imagePicker.allowsEditing = false
-            imagePicker.sourceType = .photoLibrary
+            //imagePicker.allowsEditing = false
+            imagePicker.sourceType = .camera
             present(imagePicker, animated: true, completion: nil)
         }
     }
