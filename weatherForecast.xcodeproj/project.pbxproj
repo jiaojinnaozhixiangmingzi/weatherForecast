@@ -17,7 +17,9 @@
 		630C49021DE7157800069BF7 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C49011DE7157800069BF7 /* ListTableViewController.swift */; };
 		630C49041DE7189000069BF7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C49031DE7189000069BF7 /* City.swift */; };
 		630C49071DE719E700069BF7 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C49061DE719E700069BF7 /* WeatherInfo.swift */; };
+		63117D861DEAFD3400409D56 /* takeANoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */; };
 		635479421DE856BF00744B89 /* DetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635479411DE856BF00744B89 /* DetailWeatherViewController.swift */; };
+		63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +56,10 @@
 		630C49011DE7157800069BF7 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		630C49031DE7189000069BF7 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		630C49061DE719E700069BF7 /* WeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
+		63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = takeANoteTableViewController.swift; sourceTree = "<group>"; };
 		631E82381DE88DD400768ECA /* weatherforecast.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = weatherforecast.playground; sourceTree = "<group>"; };
 		635479411DE856BF00744B89 /* DetailWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWeatherViewController.swift; sourceTree = "<group>"; };
+		63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTableViewController.swift; path = ../AddTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,8 @@
 				630C48D51DE712B200069BF7 /* SecondViewController.swift */,
 				635479411DE856BF00744B89 /* DetailWeatherViewController.swift */,
 				630C49011DE7157800069BF7 /* ListTableViewController.swift */,
+				63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */,
+				63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -290,7 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63117D861DEAFD3400409D56 /* takeANoteTableViewController.swift in Sources */,
 				635479421DE856BF00744B89 /* DetailWeatherViewController.swift in Sources */,
+				63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */,
 				630C49021DE7157800069BF7 /* ListTableViewController.swift in Sources */,
 				630C48D61DE712B200069BF7 /* SecondViewController.swift in Sources */,
 				630C49041DE7189000069BF7 /* City.swift in Sources */,

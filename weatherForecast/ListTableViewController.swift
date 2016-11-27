@@ -27,7 +27,7 @@ class ListTableViewController: UITableViewController {
                     //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
                     let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
                     if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
-                        print(weatherinfo)
+                       // print(weatherinfo)
                         let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
                         let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
                         let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")

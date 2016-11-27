@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>WWW</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>始终开启定位的用户提示信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
