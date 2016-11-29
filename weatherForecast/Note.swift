@@ -17,48 +17,55 @@ class Note: NSObject {
     var imageURL: URL?
 //    var time: Data? 
 
-    var image: UIImage?{
-        if imageData != nil{
-            return UIImage(data: imageData!)
-        } else {
-            fetchAsync() //start asynchronous image fetching from the Internet
-            return UIImage(named: "photoalbum")
-        }
-    }
-    // stores the image data 
-    private var imageData: Data?
-    var isFetching = false
+//    var image: UIImage?{
+//        if imageData != nil{
+//            return UIImage(data: imageData!)
+//        } else {
+//            fetchAsync() //start asynchronous image fetching from the Internet
+//            return UIImage(named: "photoalbum")
+//        }
+//    }
+    var image: UIImage?
+    // stores the image data
+//    private var imageData: Data?
+//    var isFetching = false
     
-    init(_ state1: String, _ note: String, _ url: String, _ name: String) {
-        state = state1
-        notes = note
-        imageURL = URL(string: url)
-        imageName = name
+    init(_ state: String, _ notes: String, _ imageName: String, _ imageURL: String, _ image: UIImage) {
+        self.state = state
+        self.notes = notes
+        self.imageURL = URL(string: imageURL)
+        self.imageName = imageName
+        self.image = image
         print("init image \(imageName)")
         super.init()
     }
     
-    func fetchAsync(){
-        if !isFetching, let url = imageURL {
-            print("start feteching image \(self.imageName)")
-            isFetching = true
-            DispatchQueue.global(qos: .userInitiated).async() { [weak self] in
-                do {
-                    let imageData = try Data(contentsOf: url)
-                    print("received data for image \(self?.imageName)")
-                    DispatchQueue.main.async {
-                        if let strongSelf = self {
-                            strongSelf.imageData = imageData
-                            NotificationCenter.default.post(name: NSNotification.Name("ImageFetched"), object: strongSelf)
-                            strongSelf.isFetching = false
-                        }
-                    }
-                } catch {
-                    print("error fetching image \(self?.imageName) error: \(error)")
-                    DispatchQueue.main.async { if let strongSelf = self {
-                        strongSelf.isFetching = false }
-                    } }
-            } }
+    convenience init?(_ state: String) {
+        self.init(state, "", "", "", UIImage())
+    }
+
+    
+//    func fetchAsync(){
+//        if !isFetching, let url = imageURL {
+//            print("start feteching image \(self.imageName)")
+//            isFetching = true
+//            DispatchQueue.global(qos: .userInitiated).async() { [weak self] in
+//                do {
+//                    let imageData = try Data(contentsOf: url)
+//                    print("received data for image \(self?.imageName)")
+//                    DispatchQueue.main.async {
+//                        if let strongSelf = self {
+//                            strongSelf.imageData = imageData
+//                            NotificationCenter.default.post(name: NSNotification.Name("ImageFetched"), object: strongSelf)
+//                            strongSelf.isFetching = false
+//                        }
+//                    }
+//                } catch {
+//                    print("error fetching image \(self?.imageName) error: \(error)")
+//                    DispatchQueue.main.async { if let strongSelf = self {
+//                        strongSelf.isFetching = false }
+//                    } }
+//            } }
 
 //        if !isFetching, let url = imageURL {
 //            print("start feteching image \(self.imageName)")
@@ -83,5 +90,5 @@ class Note: NSObject {
 //                } }
 //            }
 //            dataTask.resume() }
-    }
+//    }
 }
