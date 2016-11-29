@@ -10,6 +10,7 @@ import UIKit
 
 class AddTableViewController: UIViewController, UISearchBarDelegate {
     var selectedCellIndexPaths:[NSIndexPath] = []
+    var city11: CityMO?
     //@IBOutlet weak var searchBar: UISearchBar!
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.

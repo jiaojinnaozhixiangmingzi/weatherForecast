@@ -600,12 +600,6 @@
         <!--Root View Controller-->
         <scene sceneID="snm-P1-D7C">
             <objects>
-                <searchDisplayController id="XN3-nP-WYg">
-                    <connections>
-                        <outlet property="delegate" destination="c90-3l-taJ" id="6VP-JE-AfV"/>
-                    </connections>
-                </searchDisplayController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qDQ-FL-Kz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="c90-3l-taJ" customClass="AddTableViewController" customModule="weatherForecast" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Root View Controller" id="hND-fH-6ai">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="feB-Xh-TEg">
@@ -616,9 +610,16 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="XN3-nP-WYg" id="qvO-xX-u7c"/>
-                        <segue destination="E8m-Bw-J8k" kind="showDetail" identifier="AddCity" id="UCr-du-20m"/>
+                        <segue destination="J3W-yS-UVV" kind="unwind" identifier="SaveToList" unwindAction="unwindToListWithSegue:" id="igf-ZK-331"/>
                     </connections>
                 </tableViewController>
+                <searchDisplayController id="XN3-nP-WYg">
+                    <connections>
+                        <outlet property="delegate" destination="c90-3l-taJ" id="6VP-JE-AfV"/>
+                    </connections>
+                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDQ-FL-Kz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="J3W-yS-UVV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2880.8000000000002" y="-1321.8890554722639"/>
         </scene>
@@ -666,7 +667,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="eP1-Zi-hh7">
-                                <rect key="frame" x="2" y="286" width="371" height="232"/>
+                                <rect key="frame" x="2" y="335" width="371" height="232"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="hfB-UK-HTu">
                                         <rect key="frame" x="55" y="0.0" width="261" height="72"/>
@@ -876,7 +877,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-fw-cYt">
-                                <rect key="frame" x="148" y="125.5" width="193" height="147.5"/>
+                                <rect key="frame" x="148" y="174.5" width="193" height="147.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25˚/ 10˚" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krr-PX-pwg">
                                         <rect key="frame" x="57.5" y="0.0" width="78" height="24"/>
@@ -997,7 +998,4 @@
         <image name="windy" width="51" height="51"/>
         <image name="winp" width="33" height="33"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="UCr-du-20m"/>
-    </inferredMetricsTieBreakers>
 </document>

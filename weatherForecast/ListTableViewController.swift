@@ -11,9 +11,18 @@ import UIKit
 class ListTableViewController: UITableViewController {
     
     //    var acqList = ["北京", "上海", "南京", "西安", "济南", "广州", "深圳", "天津", "甘肃"]
-//    var acqList = [City("101010100","北京"), City("101020100","上海"), City("101190101","南京"), City("101110101","西安"), City("101210101","杭州"), City("101280101","广州"), City("101280601","深圳"), City("101030100","天津"), City("101120101","济南")]
-    
+    //    var acqList = [City("101010100","北京"), City("101020100","上海"), City("101190101","南京"), City("101110101","西安"), City("101210101","杭州"), City("101280101","广州"), City("101280601","深圳"), City("101030100","天津"), City("101120101","济南")]
     var acqList = [CityMO]()
+    @IBAction func unwindToList(segue:UIStoryboardSegue) {
+        //viewDidLoad()
+        let detailViewController = segue.source as? AddTableViewController
+        let city11 = detailViewController?.city11
+        
+        let newIndexPath = IndexPath(row: acqList.count, section: 0)
+        acqList.append(city11!)
+        tableView.insertRows(at: [newIndexPath], with: .bottom)//在末尾插入一个新的城市
+    }
+    
     override func viewDidLoad() {//初始化
         super.viewDidLoad()
         
@@ -50,8 +59,8 @@ class ListTableViewController: UITableViewController {
                         cityMO.wind = wind as! String?
                         cityMO.weaid = weaid as! String?
                         
-                        acqList.append(cityMO)
-
+//                        acqList.append(cityMO)
+                        
                     }
                     // tv!.text="城市:\(city!)\n温度：\(temp!)"
                 }catch{
@@ -111,13 +120,13 @@ class ListTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            // Delete the row from the data source
-//            acqList.remove(at: indexPath.row)//删除数组中此行的对象
-//            tableView.deleteRows(at: [indexPath], with: .fade)//界面上显示
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }
+        //        if editingStyle == .delete {
+        //            // Delete the row from the data source
+        //            acqList.remove(at: indexPath.row)//删除数组中此行的对象
+        //            tableView.deleteRows(at: [indexPath], with: .fade)//界面上显示
+        //        } else if editingStyle == .insert {
+        //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        //        }
         
         if editingStyle == .delete {
             // Delete the row from the data source
