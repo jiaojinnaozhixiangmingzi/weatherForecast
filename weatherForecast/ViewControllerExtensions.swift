@@ -2,7 +2,7 @@
 //  ViewControllerExtensions.swift
 //  weatherForecast
 //
-//  Created by 王阿星 on 2016/11/29.
+//  Created by 王煜 on 2016/11/29.
 //  Copyright © 2016年 wanghaixin. All rights reserved.
 //
 
@@ -52,9 +52,11 @@ extension AddTableViewController: UITableViewDelegate
             let detailWeatherViewController = segue.destination as!
             DetailWeatherViewController
             let city:City =  City("101010100",sender as! String?)!
+            
             for cityinmap in citysMap {//遍历城市、代码对应数组
                 if  cityinmap?.cityName == city.cityName{//从地点map中获取城市代码
                     city.cityNum = (cityinmap?.cityNum)!//赋值给city
+                    break
                 }
             }
             print(city.cityNum)
@@ -87,7 +89,27 @@ extension AddTableViewController: UITableViewDelegate
             }catch{
             }
             //todo这个地方需要写入数据库，写入之前先判断数据库中是否已经有此收藏城市
-            detailWeatherViewController.city = city
+            var city11: CityMO?
+//            cityMO1.cityid = Int64(city.cityid!)
+//            cityMO11.cityNum = city.cityNum
+//            cityMO1.cityno = city.cityno
+//            cityMO11.cityName = city.cityName
+//            cityMO1.weaid = city.weaid
+//            cityMO1.week = city.week
+//            cityMO1.days = city.days
+//            cityMO1.temperature = city.temperature
+//            cityMO1.temperature_curr = city.temperature_curr
+//            cityMO1.humidity = city.humidity
+//            cityMO1.weather = city.weather
+//            cityMO1.wind = city.wind
+//            cityMO1.winp = city.winp
+//            cityMO1.temp_high = Int64(city.temp_high!)
+//            cityMO1.temp_low = Int64(city.temp_low!)
+//            cityMO1.temp_curr = Int64(city.temp_curr!)
+            
+            let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+            city11 = appDelegate?.addToContext(cityNum: city.cityNum, cityName: city.cityName, weaid: city.weaid, days: "", week: "", cityno: "", cityid: 0, temperature: "", temperature_curr: "", humidity: "" , weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
+            detailWeatherViewController.city = city11
             //            let detailWeatherViewController = segue.destination as? DetailWeatherViewController {//把此segue的目标Cotroller
             //                print("!!!!")
             //                // detailWeatherViewController?.city = schoolArray[(indexPath?.row)!]//先把此对象赋给DetailWeatherViewController

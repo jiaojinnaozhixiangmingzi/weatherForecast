@@ -56,7 +56,7 @@ class DetailWeatherViewController: UIViewController {
         chanceOfRainLabel.text = city?.wind
         currentTempretureLabel.text = city?.temperature_curr
         weatherLabel.text = city?.weather
-        weatherIconImageView.image = UIImage(named: (city?.weather)!)
+//        weatherIconImageView.image = UIImage(named: (city?.weather)!)
         //cell.photoImageView.image = UIImage(data: photoData as Data)
         
         if let weaid = city?.weaid{//如果weaid不为空
@@ -126,13 +126,12 @@ class DetailWeatherViewController: UIViewController {
     
     
     /*
-     // MARK: - Navigation
+      MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
+      In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+      Get the new view controller using segue.destinationViewController.
+      Pass the selected object to the new view controller.
      }
      */
-    
 }

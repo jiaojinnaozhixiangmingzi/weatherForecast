@@ -13,7 +13,7 @@ class AddTableViewController: UIViewController, UISearchBarDelegate {
     //@IBOutlet weak var searchBar: UISearchBar!
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
-        print(presentingViewController)
+//        print(presentingViewController)
         dismiss(animated: true, completion: nil)
         
         //        if presentingViewController is UINavigationController {

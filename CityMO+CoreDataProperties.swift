@@ -32,5 +32,6 @@ extension CityMO {
     @NSManaged public var temp_high: Int64
     @NSManaged public var temp_low: Int64
     @NSManaged public var temp_curr: Int64
+    
 
 }

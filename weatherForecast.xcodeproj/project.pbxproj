@@ -25,6 +25,8 @@
 		B46D3DEA1DED07F80003E0C1 /* CityMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DE81DED07F80003E0C1 /* CityMO+CoreDataClass.swift */; };
 		B46D3DEB1DED07F80003E0C1 /* CityMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DE91DED07F80003E0C1 /* CityMO+CoreDataProperties.swift */; };
 		B46D3DED1DED18BE0003E0C1 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DEC1DED18BE0003E0C1 /* Note.swift */; };
+		B46D3DEF1DED61550003E0C1 /* CityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DEE1DED61550003E0C1 /* CityMap.swift */; };
+		B46D3DF11DED624B0003E0C1 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DF01DED624B0003E0C1 /* ViewControllerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		B46D3DE81DED07F80003E0C1 /* CityMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B46D3DE91DED07F80003E0C1 /* CityMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B46D3DEC1DED18BE0003E0C1 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		B46D3DEE1DED61550003E0C1 /* CityMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityMap.swift; sourceTree = "<group>"; };
+		B46D3DF01DED624B0003E0C1 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 		630C48C51DE712B200069BF7 = {
 			isa = PBXGroup;
 			children = (
+				B46D3DEE1DED61550003E0C1 /* CityMap.swift */,
 				B46D3DE81DED07F80003E0C1 /* CityMO+CoreDataClass.swift */,
 				B46D3DE91DED07F80003E0C1 /* CityMO+CoreDataProperties.swift */,
 				630C48D01DE712B200069BF7 /* weatherForecast */,
@@ -172,6 +177,7 @@
 				63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */,
 				63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */,
 				B46D3DDE1DEC2E540003E0C1 /* NotesTableViewController.swift */,
+				B46D3DF01DED624B0003E0C1 /* ViewControllerExtensions.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -316,6 +322,7 @@
 				B46D3DEB1DED07F80003E0C1 /* CityMO+CoreDataProperties.swift in Sources */,
 				635479421DE856BF00744B89 /* DetailWeatherViewController.swift in Sources */,
 				B46D3DDF1DEC2E540003E0C1 /* NotesTableViewController.swift in Sources */,
+				B46D3DEF1DED61550003E0C1 /* CityMap.swift in Sources */,
 				B46D3DED1DED18BE0003E0C1 /* Note.swift in Sources */,
 				63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */,
 				630C49021DE7157800069BF7 /* ListTableViewController.swift in Sources */,
@@ -323,6 +330,7 @@
 				630C49041DE7189000069BF7 /* City.swift in Sources */,
 				630C49071DE719E700069BF7 /* WeatherInfo.swift in Sources */,
 				B46D3DE71DED04D70003E0C1 /* Acquaintance.xcdatamodeld in Sources */,
+				B46D3DF11DED624B0003E0C1 /* ViewControllerExtensions.swift in Sources */,
 				630C48D21DE712B200069BF7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

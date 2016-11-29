@@ -41,20 +41,7 @@ class ListTableViewController: UITableViewController {
                         print(weather)
                         let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
                         let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
-<<<<<<< HEAD
-<<<<<<< HEAD
                         let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
-                        city?.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
-                        city?.temperature = temperature as! String?
-                        city?.humidity = humidity as! String?
-                        city?.weather = weather as! String?
-                        city?.winp = winp as! String?
-                        city?.wind = wind as! String?
-                        city?.weaid = weaid as! String?
-=======
-=======
->>>>>>> origin/master
-                        
                         cityMO.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
                         cityMO.temperature = temperature as! String?
                         cityMO.humidity = humidity as! String?
@@ -62,10 +49,9 @@ class ListTableViewController: UITableViewController {
                         cityMO.winp = winp as! String?
                         cityMO.wind = wind as! String?
                         cityMO.weaid = weaid as! String?
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+                        
+                        acqList.append(cityMO)
+
                     }
                     // tv!.text="城市:\(city!)\n温度：\(temp!)"
                 }catch{
