@@ -10,9 +10,17 @@ import UIKit
 
 class NotesTableViewController: UITableViewController {
 
+    var state = "北京市海淀区"
+    
+    var noteList = [Note]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //获取某地区的所有评论
+        getNotesByState(state: state)
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -92,4 +100,63 @@ class NotesTableViewController: UITableViewController {
     }
     */
 
+    func getNotesByState(state: String) {
+        //请求URL
+        let url:NSURL! = NSURL(string: "http://localhost:8080/api/notes/getNotesByState")
+        let request:NSMutableURLRequest = NSMutableURLRequest(url: url as URL)
+        let list  = NSMutableArray()
+        //var paramDic = [String: String]()
+        var paramDic = ["state": state]
+        
+        if paramDic.count > 0 {
+            //设置为POST请求
+            request.httpMethod = "POST"
+            //拆分字典,subDic是其中一项，将key与value变成字符串
+            for subDic in paramDic {
+                let tmpStr = "\(subDic.0)=\(subDic.1)"
+                list.add(tmpStr)
+            }
+            //用&拼接变成字符串的字典各项
+            let paramStr = list.componentsJoined(by: "&")
+            //UTF8转码，防止汉字符号引起的非法网址
+            let paraData = paramStr.data(using: String.Encoding.utf8)
+            //设置请求体
+            request.httpBody = paraData
+        }
+        //默认session配置
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        //发起请求
+        let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            //            let str:String! = String(data: data!, encoding: NSUTF8StringEncoding)
+            //            print("str:\(str)")
+            //转Json
+            let jsonData:NSDictionary = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! NSDictionary
+            
+            print(jsonData)
+            
+            var notesInfo:Any!=(jsonData as AnyObject).object(forKey: "data")//获取note信息
+            for oneNote in notesInfo as! [AnyObject]{
+                var state = (oneNote as AnyObject).object(forKey: "state")
+                var notes = (oneNote as AnyObject).object(forKey: "notes")
+                var path = (oneNote as AnyObject).object(forKey: "path")
+                
+                var note: Note?
+                note?.state = state as! String
+                note?.notes = notes as! String?
+                note?.imageURL = URL(string: "http://localhost:8080/api/getHomeImage?path=\(path)")
+                
+                //将一条note记录加入到list中
+                self.noteList.append(note!)
+//                var ss=(weather as AnyObject).object(forKey: "notes")//周
+//                print(ss)
+            }
+            
+            
+        }
+        //请求开始
+        dataTask.resume()
+    }
+    
 }
