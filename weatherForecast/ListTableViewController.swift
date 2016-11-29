@@ -16,11 +16,12 @@ class ListTableViewController: UITableViewController {
     @IBAction func unwindToList(segue:UIStoryboardSegue) {
         //viewDidLoad()
         let detailViewController = segue.source as? AddTableViewController
-        let city11 = detailViewController?.city11
-        
-        let newIndexPath = IndexPath(row: acqList.count, section: 0)
-        acqList.append(city11!)
-        tableView.insertRows(at: [newIndexPath], with: .bottom)//在末尾插入一个新的城市
+        if let city11 = detailViewController?.city11{
+            
+            let newIndexPath = IndexPath(row: acqList.count, section: 0)
+            acqList.append(city11)
+            tableView.insertRows(at: [newIndexPath], with: .bottom)//在末尾插入一个新的城市
+        }
     }
     
     override func viewDidLoad() {//初始化
@@ -59,7 +60,7 @@ class ListTableViewController: UITableViewController {
                         cityMO.wind = wind as! String?
                         cityMO.weaid = weaid as! String?
                         
-//                        acqList.append(cityMO)
+                        //                        acqList.append(cityMO)
                         
                     }
                     // tv!.text="城市:\(city!)\n温度：\(temp!)"

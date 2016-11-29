@@ -60,57 +60,73 @@ extension AddTableViewController: UITableViewDelegate
                     break
                 }
             }
-                       //todo这个地方需要写入数据库，写入之前先判断数据库中是否已经有此收藏城市
+            //todo这个地方需要写入数据库，写入之前先判断数据库中是否已经有此收藏城市
             
-//            cityMO1.cityid = Int64(city.cityid!)
-//            cityMO11.cityNum = city.cityNum
-//            cityMO1.cityno = city.cityno
-//            cityMO11.cityName = city.cityName
-//            cityMO1.weaid = city.weaid
-//            cityMO1.week = city.week
-//            cityMO1.days = city.days
-//            cityMO1.temperature = city.temperature
-//            cityMO1.temperature_curr = city.temperature_curr
-//            cityMO1.humidity = city.humidity
-//            cityMO1.weather = city.weather
-//            cityMO1.wind = city.wind
-//            cityMO1.winp = city.winp
-//            cityMO1.temp_high = Int64(city.temp_high!)
-//            cityMO1.temp_low = Int64(city.temp_low!)
-//            cityMO1.temp_curr = Int64(city.temp_curr!)
+            //            cityMO1.cityid = Int64(city.cityid!)
+            //            cityMO11.cityNum = city.cityNum
+            //            cityMO1.cityno = city.cityno
+            //            cityMO11.cityName = city.cityName
+            //            cityMO1.weaid = city.weaid
+            //            cityMO1.week = city.week
+            //            cityMO1.days = city.days
+            //            cityMO1.temperature = city.temperature
+            //            cityMO1.temperature_curr = city.temperature_curr
+            //            cityMO1.humidity = city.humidity
+            //            cityMO1.weather = city.weather
+            //            cityMO1.wind = city.wind
+            //            cityMO1.winp = city.winp
+            //            cityMO1.temp_high = Int64(city.temp_high!)
+            //            cityMO1.temp_low = Int64(city.temp_low!)
+            //            cityMO1.temp_curr = Int64(city.temp_curr!)
             
             let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
-            self.city11 = appDelegate?.addToContext(cityNum: city.cityNum, cityName: city.cityName, weaid: city.weaid, days: "", week: "", cityno: "", cityid: 0, temperature: "", temperature_curr: "", humidity: "" , weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
-            let url=URL(string: "http://api.k780.com:88/?app=weather.today&weaid=\(city.cityNum)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
             
-            do{
-                let data=try NSData(contentsOf:url!, options: NSData.ReadingOptions.uncached)
-                //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
-                let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
-                if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
-                    // print(weatherinfo)
-                    let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
-                    let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
-                    let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
-                    let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
-                    let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
-                    print(weather)
-                    let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
-                    let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
-                    let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
-                    city11?.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
-                    city11?.temperature = temperature as! String?
-                    city11?.humidity = humidity as! String?
-                    city11?.weather = weather as! String?
-                    city11?.winp = winp as! String?
-                    city11?.wind = wind as! String?
-                    city11?.weaid = weaid as! String?
-                    
-                    //                        acqList.append(cityMO)
-                    
+            
+            
+            let fetchedList = appDelegate?.fetchContext()//这是数组中现存的数据
+            //acqList += fetchedList
+            var isexisting = false
+            for cityMO in fetchedList! {//遍历数组
+                print("\(cityMO.cityName)")
+                print("\(city.cityName)")
+                if  city.cityName == cityMO.cityName {//已经存在此城市，则不进行插入
+                    isexisting = true
                 }
-                // tv!.text="城市:\(city!)\n温度：\(temp!)"
-            }catch{
+            }
+            if isexisting == false{
+                self.city11 = appDelegate?.addToContext(cityNum: city.cityNum, cityName: city.cityName, weaid: city.weaid, days: "", week: "", cityno: "", cityid: 0, temperature: "", temperature_curr: "", humidity: "" , weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
+                
+                let url=URL(string: "http://api.k780.com:88/?app=weather.today&weaid=\(city.cityNum)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
+                
+                do{
+                    let data=try NSData(contentsOf:url!, options: NSData.ReadingOptions.uncached)
+                    //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
+                    let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
+                    if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
+                        // print(weatherinfo)
+                        let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
+                        let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
+                        let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
+                        let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
+                        let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
+                        print(weather)
+                        let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
+                        let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
+                        let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
+                        city11?.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
+                        city11?.temperature = temperature as! String?
+                        city11?.humidity = humidity as! String?
+                        city11?.weather = weather as! String?
+                        city11?.winp = winp as! String?
+                        city11?.wind = wind as! String?
+                        city11?.weaid = weaid as! String?
+                        
+                        //                        acqList.append(cityMO)
+                        
+                    }
+                    // tv!.text="城市:\(city!)\n温度：\(temp!)"
+                }catch{
+                }
             }
             //detailWeatherViewController.city = city11
             //            let detailWeatherViewController = segue.destination as? DetailWeatherViewController {//把此segue的目标Cotroller
