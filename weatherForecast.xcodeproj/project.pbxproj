@@ -18,6 +18,7 @@
 		630C49041DE7189000069BF7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C49031DE7189000069BF7 /* City.swift */; };
 		630C49071DE719E700069BF7 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C49061DE719E700069BF7 /* WeatherInfo.swift */; };
 		63117D861DEAFD3400409D56 /* takeANoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */; };
+		63180C461DEDAF9100F8BF6F /* todayWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63180C451DEDAF9100F8BF6F /* todayWeather.swift */; };
 		635479421DE856BF00744B89 /* DetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635479411DE856BF00744B89 /* DetailWeatherViewController.swift */; };
 		63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */; };
 		B46D3DDF1DEC2E540003E0C1 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DDE1DEC2E540003E0C1 /* NotesTableViewController.swift */; };
@@ -64,6 +65,7 @@
 		630C49031DE7189000069BF7 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		630C49061DE719E700069BF7 /* WeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = takeANoteTableViewController.swift; sourceTree = "<group>"; };
+		63180C451DEDAF9100F8BF6F /* todayWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = todayWeather.swift; sourceTree = "<group>"; };
 		631E82381DE88DD400768ECA /* weatherforecast.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = weatherforecast.playground; sourceTree = "<group>"; };
 		635479411DE856BF00744B89 /* DetailWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWeatherViewController.swift; sourceTree = "<group>"; };
 		63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTableViewController.swift; path = ../AddTableViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				630C48DC1DE712B200069BF7 /* LaunchScreen.storyboard */,
 				630C48DF1DE712B200069BF7 /* Info.plist */,
 				631E82381DE88DD400768ECA /* weatherforecast.playground */,
+				63180C451DEDAF9100F8BF6F /* todayWeather.swift */,
 			);
 			path = weatherForecast;
 			sourceTree = "<group>";
@@ -250,7 +253,7 @@
 				TargetAttributes = {
 					630C48CD1DE712B200069BF7 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = N2ZHPLXE4S;
+						DevelopmentTeam = 332GQ5U6XF;
 						ProvisioningStyle = Automatic;
 					};
 					630C48E31DE712B200069BF7 = {
@@ -331,6 +334,7 @@
 				630C49071DE719E700069BF7 /* WeatherInfo.swift in Sources */,
 				B46D3DE71DED04D70003E0C1 /* Acquaintance.xcdatamodeld in Sources */,
 				B46D3DF11DED624B0003E0C1 /* ViewControllerExtensions.swift in Sources */,
+				63180C461DEDAF9100F8BF6F /* todayWeather.swift in Sources */,
 				630C48D21DE712B200069BF7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,11 +487,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N2ZHPLXE4S;
+				DEVELOPMENT_TEAM = 332GQ5U6XF;
 				INFOPLIST_FILE = weatherForecast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kaaaa.weatherForecast;
+				PRODUCT_BUNDLE_IDENTIFIER = kaccaaa.weatherForecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -497,11 +501,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N2ZHPLXE4S;
+				DEVELOPMENT_TEAM = 332GQ5U6XF;
 				INFOPLIST_FILE = weatherForecast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kaaaa.weatherForecast;
+				PRODUCT_BUNDLE_IDENTIFIER = kaccaaa.weatherForecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

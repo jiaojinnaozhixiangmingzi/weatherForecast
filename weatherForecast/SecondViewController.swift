@@ -39,7 +39,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var currentLocation:CLLocation!
     var lock = NSLock()
-    
+    var todayWeather: todayWeather?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -73,6 +73,22 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         //停止定位
         locationManager.stopUpdatingLocation()
         lock.unlock()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var weatherinfo = todayWeather?.weatherinfo
+//        self.imageView.image=ifImage?.image;
+//        self.imageView.sizeToFit();
+//        self.scrollView.contentSize=self.imageView.bounds.size
+        NotificationCenter.default.addObserver(self, selector: #selector(imageFetched), name:NSNotification.Name("ImageFetched"), object: weatherinfo)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    func imageFetched(){
+        var weatherinfo = todayWeather?.weatherinfo
     }
     
     func lonLatToCity() {
@@ -137,7 +153,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
                                 // tv!.text="城市:\(city!)\n温度：\(temp!)"
                             }catch{
                             }
-                            
+                            break
                         }
                     }
                 }
