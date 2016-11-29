@@ -11,12 +11,17 @@ import UIKit
 class ListTableViewController: UITableViewController {
     
     //    var acqList = ["北京", "上海", "南京", "西安", "济南", "广州", "深圳", "天津", "甘肃"]
-    var acqList = [City("101010100","北京"), City("101020100","上海"), City("101190101","南京"), City("101110101","西安"), City("101210101","杭州"), City("101280101","广州"), City("101280601","深圳"), City("101030100","天津"), City("101120101","济南")]
+//    var acqList = [City("101010100","北京"), City("101020100","上海"), City("101190101","南京"), City("101110101","西安"), City("101210101","杭州"), City("101280101","广州"), City("101280601","深圳"), City("101030100","天津"), City("101120101","济南")]
     
+    var acqList = [CityMO]()
     override func viewDidLoad() {//初始化
         super.viewDidLoad()
-        for city in acqList {//遍历数组
-            if let cityNum = city?.cityNum {
+        
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate), let fetchedList = appDelegate.fetchContext() {
+            acqList += fetchedList }
+        
+        for cityMO in acqList {//遍历数组
+            if let cityNum = cityMO.cityNum {
                 //city?.cityNum = UIImage(named: name)
                 //city?.weatherinfo = "This is a memo for " + name
                 // func loadWeather() {
@@ -37,13 +42,13 @@ class ListTableViewController: UITableViewController {
                         let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
                         let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
                         
-                        city?.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
-                        city?.temperature = temperature as! String?
-                        city?.humidity = humidity as! String?
-                        city?.weather = weather as! String?
-                        city?.winp = winp as! String?
-                        city?.wind = wind as! String?
-                        city?.weaid = weaid as! String?
+                        cityMO.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
+                        cityMO.temperature = temperature as! String?
+                        cityMO.humidity = humidity as! String?
+                        cityMO.weather = weather as! String?
+                        cityMO.winp = winp as! String?
+                        cityMO.wind = wind as! String?
+                        cityMO.weaid = weaid as! String?
                     }
                     // tv!.text="城市:\(city!)\n温度：\(temp!)"
                 }catch{
@@ -86,8 +91,8 @@ class ListTableViewController: UITableViewController {
         //        } else {
         //            cell.imageView?.image = UIImage(named:"photoalbum")
         //        }
-        cell.textLabel?.text = city?.cityName//大标签
-        cell.detailTextLabel?.text = city?.temperature_curr//小标签
+        cell.textLabel?.text = city.cityName//大标签
+        cell.detailTextLabel?.text = city.temperature_curr//小标签
         return cell
     }
     
@@ -103,12 +108,21 @@ class ListTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            // Delete the row from the data source
+//            acqList.remove(at: indexPath.row)//删除数组中此行的对象
+//            tableView.deleteRows(at: [indexPath], with: .fade)//界面上显示
+//        } else if editingStyle == .insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }
+        
         if editingStyle == .delete {
             // Delete the row from the data source
-            acqList.remove(at: indexPath.row)//删除数组中此行的对象
-            tableView.deleteRows(at: [indexPath], with: .fade)//界面上显示
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            let city = acqList[indexPath.row]
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                appDelegate.deleteFromContext(city: city)
+                acqList.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade) }
         }
     }
     
