@@ -78,4 +78,10 @@ class City: NSObject {
         self.init(cityNum: cityNum, cityName: cityName, weaid: "", days: "",week: "",cityno: "", cityid: 0, temperature: "", temperature_curr: "", humidity: "",weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
 
     }
+    convenience init?(_ cityNum: String,_ cityNo: String,_ cityName: String?)//带！必填函数的简略构造函数
+    {
+        //        self.init(cityNum: cityNum, cityName: cityName, weaid: "", days: "", week: "", cityno: "", cityid: 0, temperature: "", temperature_curr: "",humidity: "", weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
+        self.init(cityNum: cityNum, cityName: cityName, weaid: "", days: "",week: "",cityno: cityNo, cityid: 0, temperature: "", temperature_curr: "", humidity: "",weather: "", wind: "", winp: "", temp_high: 0, temp_low: 0, temp_curr: 0)
+        
+    }
 }

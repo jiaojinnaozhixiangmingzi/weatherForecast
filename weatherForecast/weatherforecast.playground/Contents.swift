@@ -23,6 +23,9 @@ do{
             //var ss=(weather as AnyObject).object(forKey: "week")//周
         }else{
             var ss=(weather as AnyObject).object(forKey: "week")//周
+            var sssurl=(weather as AnyObject).object(forKey: "weather_icon")//周
+            var test = URL(string: sssurl as! String)
+            var data2=try NSData(contentsOf:test!, options: NSData.ReadingOptions.uncached)
         }
         i+=1
     }

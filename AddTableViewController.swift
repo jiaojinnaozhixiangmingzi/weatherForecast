@@ -8,99 +8,83 @@
 
 import UIKit
 
-class AddTableViewController: UITableViewController {
-
+class AddTableViewController: UIViewController, UISearchBarDelegate {
+    var selectedCellIndexPaths:[NSIndexPath] = []
+    //@IBOutlet weak var searchBar: UISearchBar!
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         print(presentingViewController)
         dismiss(animated: true, completion: nil)
-
-//        if presentingViewController is UINavigationController {
-//            dismiss(animated: true, completion: nil)
-//        } else {
-//            navigationController!.popViewController(animated: true)
-//        }
+        
+        //        if presentingViewController is UINavigationController {
+        //            dismiss(animated: true, completion: nil)
+        //        } else {
+        //            navigationController!.popViewController(animated: true)
     }
+    //展示列表
+    var tableView: UITableView!
+    
+    //搜索控制器
+    var countrySearchController = UISearchController()
+    
+    //原始数据集
+    let schoolArray = ["北京","上海","天津","重庆","沈阳",
+                       "大连","长春","哈尔滨","郑州",
+                       "武汉","长沙","广州","深圳","南京",
+                       "济南","广州","石家庄"]
+    
+    //搜索过滤后的结果集
+    var searchArray:[String] = [String](){
+        didSet  {self.tableView.reloadData()}
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "新增收藏城市"
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        //创建表视图
+        let tableViewFrame = CGRect(x: 0, y: 20, width: self.view.frame.width,
+                                    height: self.view.frame.height-20)
+        self.tableView = UITableView(frame: tableViewFrame, style:.plain)
+        self.tableView!.delegate = self
+        self.tableView!.dataSource = self
+        //创建一个重用的单元格
+        self.tableView!.register(UITableViewCell.self,
+                                 forCellReuseIdentifier: "MyCell")
+        //self.tableView!.register
+        self.view.addSubview(self.tableView!)
+        self.tableView!.allowsSelection = true
+        //配置搜索控制器
+        self.countrySearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self   //两个样例使用不同的代理
+            controller.hidesNavigationBarDuringPresentation = false
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.searchBarStyle = .minimal
+            controller.searchBar.sizeToFit()
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
     }
-
+    // UITableViewDelegate 方法，处理列表项的选中事件
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        print("print一下")
+        self.tableView!.deselectRow(at: indexPath as IndexPath, animated: false)
+        selectedCellIndexPaths = [indexPath]
+        // Forces the table view to call heightForRowAtIndexPath
+        tableView.reloadRows(at: [indexPath as IndexPath], with: .automatic)
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-////
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class DetailWeatherViewController: UIViewController {
     
-    var city: City?//初始化一个城市对象
+    var city: CityMO?//初始化一个城市对象
     @IBOutlet weak var weatherOffutherWeatherImageView1: UIImageView!
     
     @IBOutlet weak var tempOffutherWeatherLabel2: UILabel!
