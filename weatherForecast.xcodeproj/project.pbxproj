@@ -24,6 +24,7 @@
 		B46D3DE71DED04D70003E0C1 /* Acquaintance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DE51DED04D70003E0C1 /* Acquaintance.xcdatamodeld */; };
 		B46D3DEA1DED07F80003E0C1 /* CityMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DE81DED07F80003E0C1 /* CityMO+CoreDataClass.swift */; };
 		B46D3DEB1DED07F80003E0C1 /* CityMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DE91DED07F80003E0C1 /* CityMO+CoreDataProperties.swift */; };
+		B46D3DED1DED18BE0003E0C1 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DEC1DED18BE0003E0C1 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		B46D3DE61DED04D70003E0C1 /* Acquaintance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Acquaintance.xcdatamodel; sourceTree = "<group>"; };
 		B46D3DE81DED07F80003E0C1 /* CityMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B46D3DE91DED07F80003E0C1 /* CityMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CityMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B46D3DEC1DED18BE0003E0C1 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				630C49031DE7189000069BF7 /* City.swift */,
 				630C49061DE719E700069BF7 /* WeatherInfo.swift */,
+				B46D3DEC1DED18BE0003E0C1 /* Note.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				B46D3DEB1DED07F80003E0C1 /* CityMO+CoreDataProperties.swift in Sources */,
 				635479421DE856BF00744B89 /* DetailWeatherViewController.swift in Sources */,
 				B46D3DDF1DEC2E540003E0C1 /* NotesTableViewController.swift in Sources */,
+				B46D3DED1DED18BE0003E0C1 /* Note.swift in Sources */,
 				63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */,
 				630C49021DE7157800069BF7 /* ListTableViewController.swift in Sources */,
 				630C48D61DE712B200069BF7 /* SecondViewController.swift in Sources */,
