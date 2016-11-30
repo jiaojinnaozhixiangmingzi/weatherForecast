@@ -270,7 +270,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="Wd1-SU-rr3">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="8CQ-AH-a1t" kind="presentation" id="cDn-J9-Z6R"/>
+                                <segue destination="8CQ-AH-a1t" kind="presentation" identifier="AddNew" id="cDn-J9-Z6R"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -368,22 +368,28 @@
                             <outlet property="delegate" destination="t0w-iq-yqz" id="ygk-Gb-Cp6"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem systemItem="save" id="ahJ-mQ-e1d"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="我的心情日志" id="OF0-az-UkS">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="NoI-oF-3Os">
                             <connections>
                                 <action selector="cancel:" destination="t0w-iq-yqz" id="i97-RE-lah"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="MIs-8J-el6">
+                            <connections>
+                                <action selector="saveNote:" destination="t0w-iq-yqz" id="kkj-aV-yvA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="notesTextView" destination="sBF-Gc-CII" id="Hlw-Lp-Zed"/>
                         <outlet property="photoImageView" destination="CUP-Kf-UV6" id="Na5-7X-Qz7"/>
+                        <segue destination="pzW-aR-cDG" kind="unwind" identifier="SaveToList" unwindAction="unwindToListWithSegue:" id="wWS-Nx-A4f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQY-Fm-QqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="pzW-aR-cDG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3269.5999999999999" y="974.6626686656673"/>
         </scene>
@@ -396,7 +402,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Bfz-4u-Qn9">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteList" id="Bfz-4u-Qn9">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bfz-4u-Qn9" id="QuP-DH-xwn">
@@ -521,7 +527,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehC-1z-tgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2322" y="975"/>
+            <point key="canvasLocation" x="2369" y="1028"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -667,7 +673,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="eP1-Zi-hh7">
-                                <rect key="frame" x="2" y="335" width="371" height="232"/>
+                                <rect key="frame" x="2" y="286" width="371" height="232"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="hfB-UK-HTu">
                                         <rect key="frame" x="55" y="0.0" width="261" height="72"/>
@@ -877,7 +883,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-fw-cYt">
-                                <rect key="frame" x="148" y="174.5" width="193" height="147.5"/>
+                                <rect key="frame" x="148" y="125.5" width="193" height="147.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25˚/ 10˚" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krr-PX-pwg">
                                         <rect key="frame" x="57.5" y="0.0" width="78" height="24"/>

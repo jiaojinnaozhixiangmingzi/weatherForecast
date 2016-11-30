@@ -39,7 +39,11 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var currentLocation:CLLocation!
     var lock = NSLock()
+
     var todayWeather: todayWeather?
+
+    var stateToNotes: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -145,6 +149,10 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
                                     
                                     self.todayTemperLabel.text = "\(temperature!)"
                                     self.state.text = "\(State) \(SubLocality)"
+                                    
+                                    //给传给写日记页面的state赋值
+                                    self.stateToNotes = "\(State)\(SubLocality)"
+                                    
                                     self.currentWindLabel.text = "\(wind!)"
                                     self.currentTempeLabel.text = "\(temperature_curr!)"
                                     self.rainChanceLabel.text = "\(humidity!)"
@@ -167,5 +175,82 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func unwindToList(segue:UIStoryboardSegue) {
+        if segue.identifier == "SaveToList",
+            let takeANoteTableViewController = segue.source as? takeANoteTableViewController, let note = takeANoteTableViewController.note {
+            var photo = note.image
+            var state = note.state
+            var notes = note.notes
+            var photoName = note.imageName
+            upload(img: photo!, state: state, notes: notes!, photoName: photoName!)
+        }
+    }
+    
+    //上传
+    func upload(img:UIImage, state:String, notes:String, photoName:String)
+    {
+        
+        print("Start upload:>>>>>")
+        let data=UIImagePNGRepresentation(img)//把图片转成data
+        
+        let uploadurl:String="http:/172.20.10.2:8080/api/notes/insertOne"//设置服务器接收地址
+        let request=NSMutableURLRequest(url:NSURL(string:uploadurl)! as URL)
+        
+        
+        request.httpMethod="POST"//设置请求方式
+        var boundary:String="-------------------21212222222222222222222"
+        var contentType:String="multipart/form-data;boundary="+boundary
+        request.addValue(contentType, forHTTPHeaderField:"Content-Type")
+        var body=NSMutableData()
+        
+        //        传入一个普通参数
+        body.append(NSString(format:"\r\n--\(boundary)\r\n" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"Content-Disposition:form-data;name=\"state\"\r\n").data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"Content-Type:text/plain;charset=utf-8\r\n\r\n").data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"\(state)" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"\r\n--\(boundary)" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        
+        //        传入一个普通参数
+        body.append(NSString(format:"\r\n--\(boundary)\r\n" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"Content-Disposition:form-data;name=\"notes\"\r\n").data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"Content-Type:text/plain;charset=utf-8\r\n\r\n").data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"\(notes)" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"\r\n--\(boundary)" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        
+        body.append(NSString(format:"\r\n--\(boundary)\r\n" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"Content-Disposition:form-data;name=\"userfile\";filename=\"\(photoName).jpg\"\r\n" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        body.append(NSString(format:"Content-Type:application/octet-stream\r\n\r\n").data(using: String.Encoding.utf8.rawValue)!)
+        body.append(data!)
+        body.append(NSString(format:"\r\n--\(boundary)" as NSString).data(using: String.Encoding.utf8.rawValue)!)
+        
+        
+        request.httpBody=body as Data
+        let que=OperationQueue()
+        NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: que, completionHandler: {
+            (response, data, error) ->Void in
+            
+            if (error != nil){
+                print(error)
+            }else{
+                //Handle data in NSData type
+                let tr:String=NSString(data:data!,encoding:String.Encoding.utf8.rawValue)! as String
+                print(tr)
+            }
+        })
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destinationViewController. // Pass the selected object to the new view controller.
+//        //        print(segue.identifier)
+//        //        print(segue.destination)
+//        //        let takeANoteTableViewController = segue.destination as? takeANoteTableViewController
+//        //        print(takeANoteTableViewController)
+//        //        if segue.identifier == "AddNewNote"
+//        ////            , let takeANoteTableViewController = segue.destination as? takeANoteTableViewController
+//        //        {
+//        ////            takeANoteTableViewController.stateToNotes = self.stateToNotes
+//        //            print(self.stateToNotes)
+//        //        }
+//    }}
 }
 
