@@ -14,15 +14,13 @@ class NotesTableViewController: UITableViewController {
     
     var noteList = [Note]()
     
+    var allNote: AllNote?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //获取某地区的所有评论
         getNotesByState(state: state)
-        print(noteList)
-        for  note in noteList{
-            print(note.notes)
-        }
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -32,6 +30,12 @@ class NotesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -114,38 +118,20 @@ class NotesTableViewController: UITableViewController {
     
     func getNotesByState(state: String) {
         //请求URL
-        let url:NSURL! = NSURL(string: "http://172.20.10.2:8080/api/notes/getNotesByState")
-        let request:NSMutableURLRequest = NSMutableURLRequest(url: url as URL)
-        let list  = NSMutableArray()
-        //var paramDic = [String: String]()
-        var paramDic = ["state": state]
-        
-        if paramDic.count > 0 {
-            //设置为POST请求
-            request.httpMethod = "POST"
-            //拆分字典,subDic是其中一项，将key与value变成字符串
-            for subDic in paramDic {
-                let tmpStr = "\(subDic.0)=\(subDic.1)"
-                list.add(tmpStr)
-            }
-            //用&拼接变成字符串的字典各项
-            let paramStr = list.componentsJoined(by: "&")
-            //UTF8转码，防止汉字符号引起的非法网址
-            let paraData = paramStr.data(using: String.Encoding.utf8)
-            //设置请求体
-            request.httpBody = paraData
-        }
-        //默认session配置
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        //发起请求
-        let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            
+        let url = "http://172.20.10.2:8080/api/notes/getNotesByState"
+        self.allNote = AllNote(url: url)//实例化一个对象
+        self.allNote?.noteInfo
+        NotificationCenter.default.addObserver(self, selector: #selector(self.noteFetch), name:NSNotification.Name("NoteFetched"), object: self.allNote)
+    }
             //            let str:String! = String(data: data!, encoding: NSUTF8StringEncoding)
             //            print("str:\(str)")
             //转Json
-            let jsonData:NSDictionary = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! NSDictionary
-            
+//            let jsonData:NSDictionary = try! JSONSerialization.jsonObject(with: noteInfo! as Data, options: .mutableContainers) as! NSDictionary
+    
+    func noteFetch(){
+        var noteInfo = allNote?.noteInfo
+        do{
+            var jsonData = try JSONSerialization.jsonObject(with: noteInfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
             print(jsonData)
             
             var notesInfo:Any!=(jsonData as AnyObject).object(forKey: "data")//获取note信息
@@ -164,9 +150,9 @@ class NotesTableViewController: UITableViewController {
                 self.noteList += noteList1
                 print(self.noteList.count)
             }
+        }catch{
         }
-        //请求开始
-        dataTask.resume()
+    
     }
     
 }
