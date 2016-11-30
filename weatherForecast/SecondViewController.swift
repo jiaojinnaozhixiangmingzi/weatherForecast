@@ -93,7 +93,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         //print("didMsgRecv:")
         
         var weatherinfo = todayweather?.weatherinfo
-        print("我获取到数据了！！\(weatherinfo)")
+        //print("我获取到数据了！！\(weatherinfo)")
         do{
             let json: Any!=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
             if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
@@ -114,8 +114,79 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
                 self.currentTempeLabel.text = "\(temperature_curr!)"
                 self.rainChanceLabel.text = "\(humidity!)"
                 self.currentWinpLabel.text = "\(winp!)"
+                
+                let url = "http://api.k780.com:88/?app=weather.future&weaid=\(weaid)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json"
+                self.todayweather = todayWeather(url: url)//实例化一个对象
+                self.todayweather?.weatherinfo
+                
+                //todayWeather?.imageURL = url
+                //                            do{
+                //                                let json: Any!=try JSONSerialization.jsonObject(with: self.todayWeather?.weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
+                //                            }catch{
+                //                            }
+                //self.todayTemperLabel.text = todayWeather?.weatherinfo
+                //self.imageView.sizeToFit();
+                //self.scrollView.contentSize=self.imageView.bounds.size
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(self.imageFetchedForNextFivedays), name:NSNotification.Name("ImageFetched"), object: self.todayweather)
             }
             // tv!.text="城市:\(city!)\n温度：\(temp!)"
+        }catch{
+        }
+    }
+    func imageFetchedForNextFivedays(){//已经收到数据了，需要做解析
+        //print("didMsgRecv:")
+        
+        var weatherinfo = todayweather?.weatherinfo
+        print("我获取到数据了！！\(weatherinfo)")
+        do{
+//            let json: Any!=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
+            var jsonforNext5days=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
+            
+            var weatherinfos:Any?=(jsonforNext5days as AnyObject).object(forKey: "result")//先获取weather信息
+            //print(weatherinfo)
+            var i=0
+            for weather in (weatherinfos as? [AnyObject])!{
+                if i == 0{//排除第一天
+                    //var ss=(weather as AnyObject).object(forKey: "week")//周
+                }else{//从1开始
+                    var weekday = (weather as AnyObject).object(forKey: "week") as! String?//周日
+                    if weekday == "星期日"{
+                        weekday = "SUN"
+                    }else if weekday == "星期六"{
+                        weekday = "SAT"
+                    }else if weekday == "星期五"{
+                        weekday = "FRI"
+                    }else if weekday == "星期四"{
+                        weekday = "THU"
+                    }else if weekday == "星期三"{
+                        weekday = "WED"
+                    }else if weekday == "星期二"{
+                        weekday = "TUE"
+                    }else if weekday == "星期一"{
+                        weekday = "MON"
+                    }
+                    let temperature_high = (weather as AnyObject).object(forKey: "temp_high") as! String?//高温
+                    let temperature_low = (weather as AnyObject).object(forKey: "temp_low") as! String?//低温
+                    if i==1 {//未来第1天
+                        nextWeekDayLabel1.text = weekday
+                        nextDayTempeLabel1.text = temperature_high! + "˚/" + temperature_low! + "˚"
+                    }else if i == 2{
+                        nextWeekDayLabel2.text = weekday
+                        nextDayTempeLabel2.text = temperature_high! + "˚/" + temperature_low! + "˚"
+                    }else if i == 3{
+                        nextWeekDayLabel3.text = weekday
+                        nextDayTempeLabel3.text = temperature_high! + "˚/" + temperature_low! + "˚"
+                    }else if i == 4{
+                        nextWeekDayLabel4.text = weekday
+                        nextDayTempeLabel4.text = temperature_high! + "˚/" + temperature_low! + "˚"
+                    }else if i == 5{
+                        nextWeekDayLabel5.text = weekday
+                        nextDayTempeLabel5.text = temperature_high! + "˚/" + temperature_low! + "˚"
+                    }
+                }
+                i+=1
+            }
         }catch{
         }
     }
