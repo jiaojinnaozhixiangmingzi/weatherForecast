@@ -109,13 +109,13 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
                 let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
                 
                 self.todayTemperLabel.text = "\(temperature!)"
-                
+                //还需要更改天气图标！！！！！
                 self.currentWindLabel.text = "\(wind!)"
                 self.currentTempeLabel.text = "\(temperature_curr!)"
                 self.rainChanceLabel.text = "\(humidity!)"
                 self.currentWinpLabel.text = "\(winp!)"
                 
-                let url = "http://api.k780.com:88/?app=weather.future&weaid=\(weaid)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json"
+                let url = "http://api.k780.com:88/?app=weather.future&weaid=\(weaid!)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json"
                 self.todayweather = todayWeather(url: url)//实例化一个对象
                 self.todayweather?.weatherinfo
                 
@@ -138,11 +138,11 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         //print("didMsgRecv:")
         
         var weatherinfo = todayweather?.weatherinfo
-        print("我获取到数据了！！\(weatherinfo)")
+        //print("我获取到数据了！！\(weatherinfo)")
         do{
 //            let json: Any!=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
             var jsonforNext5days=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
-            
+            print(jsonforNext5days)
             var weatherinfos:Any?=(jsonforNext5days as AnyObject).object(forKey: "result")//先获取weather信息
             //print(weatherinfo)
             var i=0
@@ -168,7 +168,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     let temperature_high = (weather as AnyObject).object(forKey: "temp_high") as! String?//高温
                     let temperature_low = (weather as AnyObject).object(forKey: "temp_low") as! String?//低温
-                    if i==1 {//未来第1天
+                    if i==1 {//未来第1天!!还需要更改天气图标！！！！！
                         nextWeekDayLabel1.text = weekday
                         nextDayTempeLabel1.text = temperature_high! + "˚/" + temperature_low! + "˚"
                     }else if i == 2{

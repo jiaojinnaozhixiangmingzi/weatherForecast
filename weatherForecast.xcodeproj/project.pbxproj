@@ -20,6 +20,7 @@
 		63117D861DEAFD3400409D56 /* takeANoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */; };
 		63180C461DEDAF9100F8BF6F /* todayWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63180C451DEDAF9100F8BF6F /* todayWeather.swift */; };
 		635479421DE856BF00744B89 /* DetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635479411DE856BF00744B89 /* DetailWeatherViewController.swift */; };
+		637E1BD41DEE5E6400D42B60 /* ListWeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E1BD31DEE5E6400D42B60 /* ListWeatherInfo.swift */; };
 		63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */; };
 		B46D3DDF1DEC2E540003E0C1 /* NotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DDE1DEC2E540003E0C1 /* NotesTableViewController.swift */; };
 		B46D3DE71DED04D70003E0C1 /* Acquaintance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DE51DED04D70003E0C1 /* Acquaintance.xcdatamodeld */; };
@@ -68,6 +69,7 @@
 		63180C451DEDAF9100F8BF6F /* todayWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = todayWeather.swift; sourceTree = "<group>"; };
 		631E82381DE88DD400768ECA /* weatherforecast.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = weatherforecast.playground; sourceTree = "<group>"; };
 		635479411DE856BF00744B89 /* DetailWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWeatherViewController.swift; sourceTree = "<group>"; };
+		637E1BD31DEE5E6400D42B60 /* ListWeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListWeatherInfo.swift; sourceTree = "<group>"; };
 		63D6E4591DEABA2700E3ACA0 /* AddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTableViewController.swift; path = ../AddTableViewController.swift; sourceTree = "<group>"; };
 		B46D3DDE1DEC2E540003E0C1 /* NotesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewController.swift; sourceTree = "<group>"; };
 		B46D3DE61DED04D70003E0C1 /* Acquaintance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Acquaintance.xcdatamodel; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				630C48DF1DE712B200069BF7 /* Info.plist */,
 				631E82381DE88DD400768ECA /* weatherforecast.playground */,
 				63180C451DEDAF9100F8BF6F /* todayWeather.swift */,
+				637E1BD31DEE5E6400D42B60 /* ListWeatherInfo.swift */,
 			);
 			path = weatherForecast;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				635479421DE856BF00744B89 /* DetailWeatherViewController.swift in Sources */,
 				B46D3DDF1DEC2E540003E0C1 /* NotesTableViewController.swift in Sources */,
 				B46D3DEF1DED61550003E0C1 /* CityMap.swift in Sources */,
+				637E1BD41DEE5E6400D42B60 /* ListWeatherInfo.swift in Sources */,
 				B46D3DED1DED18BE0003E0C1 /* Note.swift in Sources */,
 				63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */,
 				630C49021DE7157800069BF7 /* ListTableViewController.swift in Sources */,

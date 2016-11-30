@@ -13,6 +13,7 @@ class ListTableViewController: UITableViewController {
     //    var acqList = ["北京", "上海", "南京", "西安", "济南", "广州", "深圳", "天津", "甘肃"]
     //    var acqList = [City("101010100","北京"), City("101020100","上海"), City("101190101","南京"), City("101110101","西安"), City("101210101","杭州"), City("101280101","广州"), City("101280601","深圳"), City("101030100","天津"), City("101120101","济南")]
     var acqList = [CityMO]()
+    
     @IBAction func unwindToList(segue:UIStoryboardSegue) {
         //viewDidLoad()
         let detailViewController = segue.source as? AddTableViewController
@@ -23,7 +24,7 @@ class ListTableViewController: UITableViewController {
             tableView.insertRows(at: [newIndexPath], with: .bottom)//在末尾插入一个新的城市
         }
     }
-    
+    var listWeatherInfo: ListWeatherInfo?
     override func viewDidLoad() {//初始化
         super.viewDidLoad()
         
@@ -35,37 +36,44 @@ class ListTableViewController: UITableViewController {
                 //city?.cityNum = UIImage(named: name)
                 //city?.weatherinfo = "This is a memo for " + name
                 // func loadWeather() {
-                let url=URL(string: "http://api.k780.com:88/?app=weather.today&weaid=\(cityNum)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
+                let url="http://api.k780.com:88/?app=weather.today&weaid=\(cityNum)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json"
                 
-                do{
-                    let data=try NSData(contentsOf:url!, options: NSData.ReadingOptions.uncached)
-                    //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
-                    let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
-                        // print(weatherinfo)
-                        let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
-                        let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
-                        let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
-                        let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
-                        let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
-                        print(weather)
-                        let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
-                        let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
-                        let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
-                        cityMO.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
-                        cityMO.temperature = temperature as! String?
-                        cityMO.humidity = humidity as! String?
-                        cityMO.weather = weather as! String?
-                        cityMO.winp = winp as! String?
-                        cityMO.wind = wind as! String?
-                        cityMO.weaid = weaid as! String?
-                        
-                        //                        acqList.append(cityMO)
-                        
-                    }
-                    // tv!.text="城市:\(city!)\n温度：\(temp!)"
-                }catch{
-                }
+                self.listWeatherInfo = ListWeatherInfo(url: url)//实例化一个对象
+                listWeatherInfo?.cityNum = cityNum
+                
+                self.listWeatherInfo?.weatherinfo
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(self.imageFetched), name:NSNotification.Name("ImageFetched"), object: self.listWeatherInfo)
+                
+                //                do{
+                //                    let data=try NSData(contentsOf:url!, options: NSData.ReadingOptions.uncached)
+                //                    //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
+                //                    let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
+                //                    if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
+                //                        // print(weatherinfo)
+                //                        let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
+                //                        let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
+                //                        let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
+                //                        let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
+                //                        let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
+                //                        print(weather)
+                //                        let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
+                //                        let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
+                //                        let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
+                //                        cityMO.temperature_curr = temperature_curr as! String?//给对象中的数据赋值
+                //                        cityMO.temperature = temperature as! String?
+                //                        cityMO.humidity = humidity as! String?
+                //                        cityMO.weather = weather as! String?
+                //                        cityMO.winp = winp as! String?
+                //                        cityMO.wind = wind as! String?
+                //                        cityMO.weaid = weaid as! String?
+                //
+                //                        //                        acqList.append(cityMO)
+                //
+                //                    }
+                //                    // tv!.text="城市:\(city!)\n温度：\(temp!)"
+                //                }catch{
+                //                }
             }
         }
         
@@ -75,6 +83,61 @@ class ListTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    func imageFetched(){//开始收数据啦
+        //print("didMsgRecv:")
+        
+        var weatherinfo = listWeatherInfo?.weatherinfo
+        print("我获取到数据了！！\(weatherinfo)")//只是一个城市的天气，需要和城市绑定起来
+        
+        do{
+            let json: Any!=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
+            if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
+                // print(weatherinfo)
+                let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
+                let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
+                let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
+                let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
+                let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
+                print(weather)
+                let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
+                let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
+                let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
+                for cityMO in acqList {//遍历数组
+                    if listWeatherInfo?.cityNum == cityMO.cityNum {//遍历数组，找到
+                        cityMO.weaid = weaid as! String?
+                        cityMO.temperature = temperature as! String?
+                        cityMO.humidity = humidity as! String?
+                        cityMO.wind = wind as! String?
+                        cityMO.winp = winp as! String?
+                    }
+                }
+                //                self.todayTemperLabel.text = "\(temperature!)"
+                //                //还需要更改天气图标！！！！！
+                //                self.currentWindLabel.text = "\(wind!)"
+                //                self.currentTempeLabel.text = "\(temperature_curr!)"
+                //                self.rainChanceLabel.text = "\(humidity!)"
+                //                self.currentWinpLabel.text = "\(winp!)"
+                //
+                //                let url = "http://api.k780.com:88/?app=weather.future&weaid=\(weaid!)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json"
+                //                self.todayweather = todayWeather(url: url)//实例化一个对象
+                //                self.todayweather?.weatherinfo
+                //
+                //                //todayWeather?.imageURL = url
+                //                //                            do{
+                //                //                                let json: Any!=try JSONSerialization.jsonObject(with: self.todayWeather?.weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
+                //                //                            }catch{
+                //                //                            }
+                //                //self.todayTemperLabel.text = todayWeather?.weatherinfo
+                //                //self.imageView.sizeToFit();
+                //                //self.scrollView.contentSize=self.imageView.bounds.size
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(self.imageFetched), name:NSNotification.Name("ImageFetched"), object: self.listWeatherInfo)
+            }
+            // tv!.text="城市:\(city!)\n温度：\(temp!)"
+        }catch{
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -105,6 +168,7 @@ class ListTableViewController: UITableViewController {
         //            cell.imageView?.image = UIImage(named:"photoalbum")
         //        }
         cell.textLabel?.text = city.cityName//大标签
+        print(city.cityName)
         cell.detailTextLabel?.text = city.temperature_curr//小标签
         return cell
     }
