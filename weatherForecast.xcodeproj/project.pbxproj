@@ -29,6 +29,8 @@
 		B46D3DED1DED18BE0003E0C1 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DEC1DED18BE0003E0C1 /* Note.swift */; };
 		B46D3DEF1DED61550003E0C1 /* CityMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DEE1DED61550003E0C1 /* CityMap.swift */; };
 		B46D3DF11DED624B0003E0C1 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D3DF01DED624B0003E0C1 /* ViewControllerExtensions.swift */; };
+		B49560F71DEE67830086D999 /* AllNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49560F61DEE67830086D999 /* AllNote.swift */; };
+		B49560F91DEE722D0086D999 /* PrepareForNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49560F81DEE722D0086D999 /* PrepareForNotesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		B46D3DEC1DED18BE0003E0C1 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		B46D3DEE1DED61550003E0C1 /* CityMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityMap.swift; sourceTree = "<group>"; };
 		B46D3DF01DED624B0003E0C1 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		B49560F61DEE67830086D999 /* AllNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNote.swift; sourceTree = "<group>"; };
+		B49560F81DEE722D0086D999 /* PrepareForNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareForNotesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				631E82381DE88DD400768ECA /* weatherforecast.playground */,
 				63180C451DEDAF9100F8BF6F /* todayWeather.swift */,
 				637E1BD31DEE5E6400D42B60 /* ListWeatherInfo.swift */,
+				B49560F61DEE67830086D999 /* AllNote.swift */,
 			);
 			path = weatherForecast;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				63117D851DEAFD3400409D56 /* takeANoteTableViewController.swift */,
 				B46D3DDE1DEC2E540003E0C1 /* NotesTableViewController.swift */,
 				B46D3DF01DED624B0003E0C1 /* ViewControllerExtensions.swift */,
+				B49560F81DEE722D0086D999 /* PrepareForNotesViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -256,7 +262,7 @@
 				TargetAttributes = {
 					630C48CD1DE712B200069BF7 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 332GQ5U6XF;
+						DevelopmentTeam = N2ZHPLXE4S;
 						ProvisioningStyle = Automatic;
 					};
 					630C48E31DE712B200069BF7 = {
@@ -334,12 +340,14 @@
 				63D6E45A1DEABA2700E3ACA0 /* AddTableViewController.swift in Sources */,
 				630C49021DE7157800069BF7 /* ListTableViewController.swift in Sources */,
 				630C48D61DE712B200069BF7 /* SecondViewController.swift in Sources */,
+				B49560F91DEE722D0086D999 /* PrepareForNotesViewController.swift in Sources */,
 				630C49041DE7189000069BF7 /* City.swift in Sources */,
 				630C49071DE719E700069BF7 /* WeatherInfo.swift in Sources */,
 				B46D3DE71DED04D70003E0C1 /* Acquaintance.xcdatamodeld in Sources */,
 				B46D3DF11DED624B0003E0C1 /* ViewControllerExtensions.swift in Sources */,
 				63180C461DEDAF9100F8BF6F /* todayWeather.swift in Sources */,
 				630C48D21DE712B200069BF7 /* AppDelegate.swift in Sources */,
+				B49560F71DEE67830086D999 /* AllNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,11 +499,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 332GQ5U6XF;
+				DEVELOPMENT_TEAM = N2ZHPLXE4S;
 				INFOPLIST_FILE = weatherForecast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kaccaaa.weatherForecast;
+				PRODUCT_BUNDLE_IDENTIFIER = kafukaaaa.weatherForecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -505,11 +513,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 332GQ5U6XF;
+				DEVELOPMENT_TEAM = N2ZHPLXE4S;
 				INFOPLIST_FILE = weatherForecast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kaccaaa.weatherForecast;
+				PRODUCT_BUNDLE_IDENTIFIER = kafukaaaa.weatherForecast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

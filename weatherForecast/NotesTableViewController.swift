@@ -12,16 +12,23 @@ class NotesTableViewController: UITableViewController {
     
     var state = "北京市海淀区"
     
-    var noteList = [Note]()
+    var noteList = [Note("请稍后","北京","","", UIImage())]
+
     
     var allNote: AllNote?
     
+    //        var noteList = [Note("101010100","北京","","", UIImage()), Note("101020100","上海","","", UIImage()), Note("101190101","南京","","", UIImage()), Note("101110101","西安","","", UIImage())]
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //var i = 1
+        for i in 1...9{//做一个10次的循环
+            var note =  Note("请稍后","","","",UIImage())
+            noteList.append(note)
+        }
+        print("输出一下整个notelist的长度，正常应该是10\(noteList.count)")
         //获取某地区的所有评论
         getNotesByState(state: state)
-        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,11 +38,11 @@ class NotesTableViewController: UITableViewController {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //        super.viewWillDisappear(animated)
+    //        NotificationCenter.default.removeObserver(self)
+    //    }
+    //
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -123,10 +130,10 @@ class NotesTableViewController: UITableViewController {
         self.allNote?.noteInfo
         NotificationCenter.default.addObserver(self, selector: #selector(self.noteFetch), name:NSNotification.Name("NoteFetched"), object: self.allNote)
     }
-            //            let str:String! = String(data: data!, encoding: NSUTF8StringEncoding)
-            //            print("str:\(str)")
-            //转Json
-//            let jsonData:NSDictionary = try! JSONSerialization.jsonObject(with: noteInfo! as Data, options: .mutableContainers) as! NSDictionary
+    //            let str:String! = String(data: data!, encoding: NSUTF8StringEncoding)
+    //            print("str:\(str)")
+    //转Json
+    //            let jsonData:NSDictionary = try! JSONSerialization.jsonObject(with: noteInfo! as Data, options: .mutableContainers) as! NSDictionary
     
     func noteFetch(){
         var noteInfo = allNote?.noteInfo
@@ -136,6 +143,7 @@ class NotesTableViewController: UITableViewController {
             
             var notesInfo:Any!=(jsonData as AnyObject).object(forKey: "data")//获取note信息
             print("开始输出日记信息》》》》")
+            var flag = 0
             for oneNote in notesInfo as! [AnyObject]{
                 var state = (oneNote as AnyObject).object(forKey: "state")
                 var notes = (oneNote as AnyObject).object(forKey: "notes")
@@ -146,13 +154,20 @@ class NotesTableViewController: UITableViewController {
                 var note:Note = Note(state as! String, notes as! String, url1, "", UIImage())
                 print(note)
                 //将一条note记录加入到list中
-                var noteList1 = [note]
-                self.noteList += noteList1
+//                self.noteList.append(note)
+                self.noteList[flag].state = state as! String
+                self.noteList[flag].notes = notes as! String
+                self.noteList[flag].imageURL = URL(string: url1)
+            
+                flag += 1
+                
+                //                var noteList1 = [note]
+                //                self.noteList += noteList1
                 print(self.noteList.count)
             }
         }catch{
         }
-    
+        //viewDidLoad()
     }
     
 }

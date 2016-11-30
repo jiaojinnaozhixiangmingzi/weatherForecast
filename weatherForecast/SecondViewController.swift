@@ -138,7 +138,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         //print("didMsgRecv:")
         
         var weatherinfo = todayweather?.weatherinfo
-        //print("我获取到数据了！！\(weatherinfo)")
+        print("我获取到数据了！！\(weatherinfo)")
         do{
 //            let json: Any!=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
             var jsonforNext5days=try JSONSerialization.jsonObject(with: weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
