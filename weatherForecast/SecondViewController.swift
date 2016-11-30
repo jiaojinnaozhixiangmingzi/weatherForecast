@@ -39,7 +39,9 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var currentLocation:CLLocation!
     var lock = NSLock()
-    var todayWeather: todayWeather?
+    
+    var todayweather: todayWeather?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -74,21 +76,23 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         lock.unlock()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        var weatherinfo = todayWeather?.weatherinfo
-//        self.imageView.image=ifImage?.image;
-//        self.imageView.sizeToFit();
-//        self.scrollView.contentSize=self.imageView.bounds.size
-        NotificationCenter.default.addObserver(self, selector: #selector(imageFetched), name:NSNotification.Name("ImageFetched"), object: weatherinfo)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        var weatherinfo = todayWeather?.weatherinfo
+//        //        self.imageView.image=ifImage?.image;
+//        //        self.imageView.sizeToFit();
+//        //        self.scrollView.contentSize=self.imageView.bounds.size
+//        NotificationCenter.default.addObserver(self, selector: #selector(imageFetched), name:NSNotification.Name("ImageFetched"), object: weatherinfo)
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
-    func imageFetched(){
-        var weatherinfo = todayWeather?.weatherinfo
+    func imageFetched(){//开始收数据啦
+         //print("didMsgRecv:")
+        var weatherinfo = todayweather?.weatherinfo
+        print("我获取到数据了！！\(weatherinfo)")
     }
     
     func lonLatToCity() {
@@ -125,35 +129,47 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate {
                         if SubLocality.components(separatedBy: (city?.cityName)!).count > 1{//海淀区包含海淀二字
                             var cityNum = city?.cityNum
                             print(cityNum)
-                            let url=URL(string: "http://api.k780.com:88/?app=weather.today&weaid=\(cityNum!)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
+                            let url = "http://api.k780.com:88/?app=weather.today&weaid=\(cityNum!)&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json"
+                            self.todayweather = todayWeather(url: url)//实例化一个对象
+                            self.todayweather?.weatherinfo
                             
-                            do{
-                                let data=try NSData(contentsOf:url!, options: NSData.ReadingOptions.uncached)
-                                //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
-                                let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
-                                if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
-                                    // print(weatherinfo)
-                                    let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
-                                    let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
-                                    let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
-                                    let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
-                                    let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
-                                    print(weather)
-                                    let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
-                                    let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
-                                    let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
-                                    
-                                    self.todayTemperLabel.text = "\(temperature!)"
-                                    self.state.text = "\(State) \(SubLocality)"
-                                    self.currentWindLabel.text = "\(wind!)"
-                                    self.currentTempeLabel.text = "\(temperature_curr!)"
-                                    self.rainChanceLabel.text = "\(humidity!)"
-                                    self.currentWinpLabel.text = "\(winp!)"
-                                }
-                                // tv!.text="城市:\(city!)\n温度：\(temp!)"
-                            }catch{
-                            }
-                            break
+                            //todayWeather?.imageURL = url
+//                            do{
+//                                let json: Any!=try JSONSerialization.jsonObject(with: self.todayWeather?.weatherinfo as! Data, options: JSONSerialization.ReadingOptions.allowFragments)
+//                            }catch{
+//                            }
+                            //self.todayTemperLabel.text = todayWeather?.weatherinfo
+                            //self.imageView.sizeToFit();
+                            //self.scrollView.contentSize=self.imageView.bounds.size
+                            
+                            NotificationCenter.default.addObserver(self, selector: #selector(self.imageFetched), name:NSNotification.Name("ImageFetched"), object: self.todayweather)
+                            //                            do{
+                            //                                let data=try NSData(contentsOf:url!, options: NSData.ReadingOptions.uncached)
+                            //                                //let str=NSString(data:data as Data,encoding:String.Encoding.utf8.rawValue)
+                            //                                let json: Any!=try JSONSerialization.jsonObject(with: data as Data, options: JSONSerialization.ReadingOptions.allowFragments)
+                            //                                if let weatherinfo:Any = (json as AnyObject).object(forKey: "result"){//先判断获取到的weather是否为空，然后获取所有weather信息
+                            //                                    // print(weatherinfo)
+                            //                                    let temperature_curr:Any! = (weatherinfo as AnyObject).object(forKey: "temperature_curr")//当前气温，带符号，显示到界面上
+                            //                                    let weaid:Any! = (weatherinfo as AnyObject).object(forKey: "weaid")//获取weatid
+                            //                                    let temperature:Any!=(weatherinfo as AnyObject).object(forKey: "temperature")
+                            //                                    let humidity:Any!=(weatherinfo as AnyObject).object(forKey: "humidity")
+                            //                                    let weather:Any!=(weatherinfo as AnyObject).object(forKey: "weather")
+                            //                                    print(weather)
+                            //                                    let wind:Any!=(weatherinfo as AnyObject).object(forKey: "wind")
+                            //                                    let winp:Any!=(weatherinfo as AnyObject).object(forKey: "winp")
+                            //                                    let weathericon:Any! = (weatherinfo as AnyObject).object(forKey: "weather_icon")
+                            //
+                            //                                    self.todayTemperLabel.text = "\(temperature!)"
+                            //                                    self.state.text = "\(State) \(SubLocality)"
+                            //                                    self.currentWindLabel.text = "\(wind!)"
+                            //                                    self.currentTempeLabel.text = "\(temperature_curr!)"
+                            //                                    self.rainChanceLabel.text = "\(humidity!)"
+                            //                                    self.currentWinpLabel.text = "\(winp!)"
+                            //                                }
+                            //                                // tv!.text="城市:\(city!)\n温度：\(temp!)"
+                            //                            }catch{
+                            //                            }
+                            //break
                         }
                     }
                 }

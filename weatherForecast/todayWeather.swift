@@ -16,7 +16,7 @@ class todayWeather: NSObject {
         get{
             if weatherData == nil{
                 fetchAsync()
-                return weatherinfo
+                return nil
             }
             else{
                 return weatherData
@@ -24,7 +24,6 @@ class todayWeather: NSObject {
         }
     }
     var isFetching = false
-    private var weatherData: NSData?
     
     private func fetchAsync(){
         if !isFetching,let url=imageURL{
@@ -32,7 +31,7 @@ class todayWeather: NSObject {
             isFetching=true;
             DispatchQueue.global(qos: .userInitiated).async {[weak self] in
                 do{
-                    let imageData = try Data(contentsOf: url)
+                    let imageData=try Data(contentsOf: url)
                     DispatchQueue.main.async {
                         if let strongSelf = self {
                             strongSelf.weatherData = imageData as NSData?
@@ -58,5 +57,6 @@ class todayWeather: NSObject {
         print("init image \(imageURL)")
         super.init()
     }
-
+    
+    private var weatherData: NSData?
 }
